@@ -1,6 +1,7 @@
 timepassed = 0
 timeToChaos = 600;
 latestChaos = "";
+
 function update()
     timepassed = timepassed + 1
     
@@ -10,7 +11,8 @@ function update()
 
     if timepassed > timeToChaos  then
         timepassed = 0
-		--run random function here
+        --run random function here
+        latestChaos = "Cool Chaos Thing"
     end
 end
 
