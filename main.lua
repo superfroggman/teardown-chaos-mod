@@ -4,10 +4,6 @@ latestChaos = "";
 
 function update()
     timepassed = timepassed + 1
-    
-    if timepassed > 250 then
-        latestChaos = ""
-    end
 
     if timepassed > timeToChaos  then
         timepassed = 0
@@ -50,8 +46,19 @@ function launchUp()
 	end
 end
 
-function pauseGame()
-	SetPaused(true)
+function hole()
+	MakeHole(GetPlayerTransform().pos, 5, 5, 5)
+end
+
+function removeVehicle()
+	local vehicle = GetPlayerVehicle()
+	if vehicle ~= 0 then
+		Delete(GetVehicleBody(vehicle))
+	end
+end
+
+function ignitePlayer()
+	SpawnFire(GetPlayerTransform().pos)
 end
 
 
@@ -62,12 +69,19 @@ c_tbl =
 {
 	{lowHealth, "Low health"},
 	{launchUp, "Launch Up"},
-	{pauseGame, "Pause Game"},
+	{hole, "Diggy Diggy Hole"},
+	{removeVehicle, "Bye Bye Vehicle"},
+	{ignitePlayer, "Fire go brrrrrr"}
 }
 
 function runRandomFunction ()
 	randomNumber = math.ceil(math.random(#c_tbl))
 	tableItem = c_tbl[randomNumber]
+
+	if(tableItem[2] == latestChaos) then
+		runRandomFunction()
+		return
+	end
     func = tableItem[1]
     if(func) then
 		func()
