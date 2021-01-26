@@ -39,19 +39,19 @@ function lowHealth()
 	SetPlayerHealth(0.1)
 end
 
-function launchPlayerUp()
-	SetPlayerVelocity(Vec(0, 30, 0))
+function launchUp()
+	local vehicle = GetPlayerVehicle()
+
+	velocity = Vec(0,30,0)
+	if vehicle ~= 0 then
+		SetBodyVelocity(GetVehicleBody(vehicle), velocity)
+	else
+		SetPlayerVelocity(velocity)
+	end
 end
 
 function pauseGame()
 	SetPaused(true)
-end
-
-function launchVehicleUp()
-	local vehicle = GetPlayerVehicle()
-	if vehicle ~= 0 then
-		SetBodyVelocity(GetVehicleBody(vehicle), Vec(0,30,0))
-	end
 end
 
 
@@ -61,8 +61,8 @@ end
 c_tbl =
 {
 	{lowHealth, "Low health"},
-	{launchPlayerUp, "Launch"},
-	{pauseGame, "Pause"},
+	{launchUp, "Launch Up"},
+	{pauseGame, "Pause Game"},
 }
 
 function runRandomFunction ()
