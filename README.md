@@ -6,7 +6,9 @@ Teardown Chaos Mod is a recreation of <a href ="https://github.com/gta-chaos-mod
 
 # Usage
 
-INSTRUCTIONS COMING SOON! 
+- Clone the repository.
+- Put the folder inside Teardowns mod folder. (Documents/Teardown/mods)
+- Enable the mod inside Teardown
 
 # License
 
