@@ -11,7 +11,7 @@ function update()
 
     if timepassed > timeToChaos  then
         timepassed = 0
-        --run random function here
+		runRandomFunction()
     end
 end
 
@@ -52,4 +52,27 @@ function launchVehicleUp()
 	if vehicle ~= 0 then
 		SetBodyVelocity(GetVehicleBody(vehicle), Vec(0,30,0))
 	end
+end
+
+
+
+--EFFECT LIST
+
+c_tbl =
+{
+	{lowHealth, "Low health"},
+	{launchPlayerUp, "Launch"},
+	{pauseGame, "Pause"},
+}
+
+function runRandomFunction ()
+	randomNumber = math.ceil(math.random(#c_tbl))
+	tableItem = c_tbl[randomNumber]
+    func = tableItem[1]
+    if(func) then
+		func()
+		latestChaos = tableItem[2]
+    else
+        latestChaos = "error"
+    end
 end
