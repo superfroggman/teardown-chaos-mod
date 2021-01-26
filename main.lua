@@ -11,7 +11,6 @@ function update()
     if timepassed > timeToChaos then
         latestChaos = "Low Health!"
         timepassed = 0
-        SetPlayerHealth(0.1)
     end
 end
 
@@ -27,3 +26,21 @@ function round(x)
     return x>=0 and math.floor(x+0.5) or math.ceil(x-0.5)
   end
   
+function lowHealth()
+	SetPlayerHealth(0.1)
+end
+
+function launchPlayerUp()
+	SetPlayerVelocity(Vec(0, 30, 0))
+end
+
+function pauseGame()
+	SetPaused(true)
+end
+
+function launchVehicleUp()
+	local vehicle = GetPlayerVehicle()
+	if vehicle ~= 0 then
+		SetBodyVelocity(GetVehicleBody(vehicle), Vec(0,30,0))
+	end
+end
