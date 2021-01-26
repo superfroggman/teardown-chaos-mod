@@ -12,10 +12,28 @@ function update()
     if timepassed > timeToChaos  then
         timepassed = 0
         --run random function here
-        latestChaos = "Cool Chaos Thing"
     end
 end
 
+
+
+--DRAW
+
+function draw()
+    UiTextOutline(0,0,0,1, 0.5)
+    UiFont("bold.ttf", 45)
+    UiAlign("top left")
+    UiText(tostring(round((timeToChaos/60) - (timepassed/60))), true)
+    UiText(latestChaos, true)
+end
+
+function round(x)
+    return x>=0 and math.floor(x+0.5) or math.ceil(x-0.5)
+end
+
+
+
+--EFFECTS
 
 function lowHealth()
 	SetPlayerHealth(0.1)
@@ -35,15 +53,3 @@ function launchVehicleUp()
 		SetBodyVelocity(GetVehicleBody(vehicle), Vec(0,30,0))
 	end
 end
-
-function draw()
-    UiTextOutline(0,0,0,1, 0.5)
-    UiFont("bold.ttf", 45)
-    UiAlign("top left")
-    UiText(tostring(round((timeToChaos/60) - (timepassed/60))), true)
-    UiText(latestChaos, true)
-end
-
-function round(x)
-    return x>=0 and math.floor(x+0.5) or math.ceil(x-0.5)
-  end
