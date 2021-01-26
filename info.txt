@@ -1,0 +1,3 @@
+name = Chaos Mod
+author = Superfroggman
+description = It's caotic
