@@ -7,7 +7,7 @@ function update()
 
     if timepassed > timeToChaos  then
         timepassed = 0
-		runRandomFunction()
+        runRandomFunction()
     end
 end
 
@@ -61,6 +61,10 @@ function ignitePlayer()
 	SpawnFire(GetPlayerTransform().pos)
 end
 
+function knock()
+    PlaySound(LoadSound("./sound/knock.ogg"))
+end
+
 
 
 --EFFECT LIST
@@ -71,7 +75,9 @@ c_tbl =
 	{launchUp, "Launch Up"},
 	{hole, "Diggy Diggy Hole"},
 	{removeVehicle, "Bye Bye Vehicle"},
-	{ignitePlayer, "Fire go brrrrrr"}
+    {ignitePlayer, "Fire go brrrrrr"},
+    {knock, "Who's there"}
+
 }
 
 function runRandomFunction ()
