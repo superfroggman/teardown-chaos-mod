@@ -1,10 +1,8 @@
-
 timepassed = 0
 timeToChaos = 600;
 latestChaos = "";
-
 function update()
-	timepassed = timepassed + 1
+    timepassed = timepassed + 1
     
     if timepassed > 250 then
         latestChaos = ""
@@ -15,6 +13,7 @@ function update()
 		--run random function here
     end
 end
+
 
 function lowHealth()
 	SetPlayerHealth(0.1)
