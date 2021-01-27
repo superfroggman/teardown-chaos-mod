@@ -1,13 +1,37 @@
-timepassed = 0
+
+--CONFIGURABLE
 timeToChaos = 600;
+
+--NON-CONFIGURABLE
+timepassed = 0
 latestChaos = "";
+activeEffects = {}
 
 function update()
-    timepassed = timepassed + 1
+	timepassed = timepassed + 1
+	
+	for i = 1, #activeEffects, 1 do
+		effect = activeEffects[i]
+
+		--Run effect function
+		func = effect[1]
+		if(func) then
+			func()
+		end
+
+		--Decrease time left
+		effect[3] = effect[3] - 1
+		--Remove active effect if time has run out
+		if(effect[3] <= 0) then
+			table.remove(activeEffects, i)
+			i = i - 1
+		end
+	end
+
 
     if timepassed > timeToChaos  then
         timepassed = 0
-        runRandomFunction()
+		runRandomFunction()
     end
 end
 
@@ -57,7 +81,7 @@ function removeVehicle()
 	end
 end
 
-function ignitePlayer()
+function fireTrail()
 	SpawnFire(GetPlayerTransform().pos)
 end
 
@@ -72,31 +96,35 @@ end
 --Function name, effect text, time (0 for once)
 effects =
 {
-	{lowHealth, "Low health"},
-	{launchUp, "Launch Up"},
-	{hole, "Diggy Diggy Hole"},
-	{removeVehicle, "Bye Bye Vehicle"},
-    {ignitePlayer, "Fire go brrrrrr"},
-    {knock, "Who's there"}
+	{lowHealth, "Low health", 0},
+	{launchUp, "Launch Up", 0},
+	{hole, "Diggy Diggy Hole", 0},
+	{removeVehicle, "Bye Bye Vehicle", 0},
+    {fireTrail, "Fire go brrrrrr", 300},
+    {knock, "Who's there", 0}
 }
 
 function runRandomFunction ()
 	--Get random effect
 	randomNumber = math.ceil(math.random(#effects))
-	tableItem = effects[randomNumber]
+	effect = effects[randomNumber]
 
 	--Prevent previous effect from running again
-	if(tableItem[2] == latestChaos) then
+	if(effect[2] == latestChaos) then
 		runRandomFunction()
 		return
 	end
 
 	--Run effect
-    func = tableItem[1]
+    func = effect[1]
 	if(func) then
-		func()
+		if(effect[3] == 0) then
+			func()
+		else
+			activeEffects[#activeEffects + 1] = effect
+		end
 		--Set text to effect text
-		latestChaos = tableItem[2]
+		latestChaos = effect[2]
     else
         latestChaos = "error"
     end
