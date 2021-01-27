@@ -4,6 +4,12 @@ timepassed = 0
 latestChaos = "";
 activeEffects = {}
 
+function init()
+	if timeToChaos == 0 then
+		timeToChaos = 10
+	end
+end
+
 function update()
 	timepassed = timepassed + 1
 	for i = 1, #activeEffects, 1 do

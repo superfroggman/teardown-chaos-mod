@@ -3,9 +3,11 @@ timeToChaos = GetInt("savegame.mod.timeToChaos", 10)
 function draw()
 	UiTranslate(UiCenter(), 250)
 	UiAlign("center middle")
+	
 	if timeToChaos == 0 then
 		timeToChaos = 10
 	end
+
 	SetInt("savegame.mod.timeToChaos", timeToChaos)
 	--Title
 	UiFont("bold.ttf", 48)
