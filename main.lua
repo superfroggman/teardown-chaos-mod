@@ -69,7 +69,8 @@ end
 
 --EFFECT LIST
 
-c_tbl =
+--Function name, effect text, time (0 for once)
+effects =
 {
 	{lowHealth, "Low health"},
 	{launchUp, "Launch Up"},
@@ -77,20 +78,24 @@ c_tbl =
 	{removeVehicle, "Bye Bye Vehicle"},
     {ignitePlayer, "Fire go brrrrrr"},
     {knock, "Who's there"}
-
 }
 
 function runRandomFunction ()
-	randomNumber = math.ceil(math.random(#c_tbl))
-	tableItem = c_tbl[randomNumber]
+	--Get random effect
+	randomNumber = math.ceil(math.random(#effects))
+	tableItem = effects[randomNumber]
 
+	--Prevent previous effect from running again
 	if(tableItem[2] == latestChaos) then
 		runRandomFunction()
 		return
 	end
+
+	--Run effect
     func = tableItem[1]
-    if(func) then
+	if(func) then
 		func()
+		--Set text to effect text
 		latestChaos = tableItem[2]
     else
         latestChaos = "error"
