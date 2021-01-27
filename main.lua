@@ -1,18 +1,13 @@
-
---CONFIGURABLE
-timeToChaos = 600;
-
 --NON-CONFIGURABLE
+timeToChaos = (GetInt("savegame.mod.timeToChaos", 10) * 60) --configurable in options
 timepassed = 0
 latestChaos = "";
 activeEffects = {}
 
 function update()
 	timepassed = timepassed + 1
-	
 	for i = 1, #activeEffects, 1 do
 		effect = activeEffects[i]
-
 		--Run effect function
 		func = effect[1]
 		if(func) then
