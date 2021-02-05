@@ -143,6 +143,10 @@ function fireVision()
 	SpawnFire(raycast())
 end
 
+function explosionAtSight()
+	Explosion(raycast(), 1)
+end
+
 
 
 
@@ -161,7 +165,8 @@ effects =
 	{loadLevel, "Check out my house", 0},
 	{vehicleSpin, "You spin me right round", 0},
 	{laserVision, "Laser vision", 300},
-	{fireVision, "Fire vision", 300}
+	{fireVision, "Fire vision", 300},
+	{explosionAtSight, "Look where you're looking", 0}
 }
 
 function runRandomFunction ()
