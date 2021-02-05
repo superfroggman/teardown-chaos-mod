@@ -11,7 +11,7 @@ Teardown Chaos Mod is a recreation of <a href ="https://github.com/gta-chaos-mod
 - Enable the mod inside Teardown
 <br>
 You could also download the mod from <a href="https://teardownmods.com/index.php?/file/989-chaos-mod/">TeardownMods</a>
-<br>
+<br><br>
 Chaos Mod will now automatically start when ever you play Teardown. <br>
 To disable the mod, do this in Teardown's mod settings.
 
