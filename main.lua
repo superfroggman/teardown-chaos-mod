@@ -32,8 +32,7 @@ function update()
 
     if timepassed > timeToChaos  then
         timepassed = 0
-		-- runRandomFunction()
-		vehicleSpin()
+		runRandomFunction()
     end
 end
 
