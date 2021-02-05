@@ -115,7 +115,7 @@ function vehicleBoost()
 			SpawnParticle("darksmoke", p, VecAdd(pvel, VecScale(d, 10)), 1.5, 1.0)
 			
 			--Play sound
-			PlayLoop(LoadLoop("rocket.ogg"), t.pos, 0.75)
+			PlayLoop(LoadLoop("./sound/rocket.ogg"), t.pos, 0.75)
 		else
 			--Idle particle effect
 			SpawnParticle("fire", p, VecScale(d, 1), 0.3, 0.1)
