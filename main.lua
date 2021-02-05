@@ -32,7 +32,8 @@ function update()
 
     if timepassed > timeToChaos  then
         timepassed = 0
-		runRandomFunction()
+		-- runRandomFunction()
+		vehicleSpin()
     end
 end
 
@@ -128,6 +129,15 @@ function loadLevel()
 	StartLevel("basic", "./maps/basic/main.xml")
 end
 
+function vehicleSpin()
+	local angVel = Vec(0,2000,0)
+	local vehicle = GetPlayerVehicle()
+
+	if vehicle ~= 0 then
+		SetBodyAngularVelocity(GetVehicleBody(vehicle), angVel)
+	end
+end
+
 
 
 
@@ -143,7 +153,8 @@ effects =
     {fireTrail, "Fire go brrrrrr", 300},
     {knock, "Who's there?", 0},
 	{vehicleBoost, "BOOST", 300},
-	{loadLevel, "Check out my house", 0}
+	{loadLevel, "Check out my house", 0},
+	{vehicleSpin, "You spin me right round", 0} 
 }
 
 function runRandomFunction ()
