@@ -173,13 +173,13 @@ effects =
 	{removeVehicle, "Bye Bye Vehicle", 0},
     {fireTrail, "Fire go brrrrrr", 300},
     {knock, "Who's there?", 0},
-	{vehicleBoost, "BOOST", 300},
+	{vehicleBoost, "BOOST", 1200},
 	{loadLevel, "Check out my house", 0},
 	{vehicleSpin, "You spin me right round", 0},
 	{laserVision, "Laser vision", 300},
 	{fireVision, "Fire vision", 300},
 	{explosionAtSight, "Look where you're looking", 0},
-	{throttle, "Runaway vehicle", 300}
+	{throttle, "Runaway vehicle", 600}
 }
 
 function runRandomFunction ()
