@@ -124,6 +124,10 @@ function vehicleBoost()
 	end
 end
 
+function loadLevel()
+	StartLevel("basic", "./maps/basic/main.xml")
+end
+
 
 
 
@@ -138,7 +142,8 @@ effects =
 	{removeVehicle, "Bye Bye Vehicle", 0},
     {fireTrail, "Fire go brrrrrr", 300},
     {knock, "Who's there?", 0},
-	{vehicleBoost, "BOOST", 300}
+	{vehicleBoost, "BOOST", 300},
+	{loadLevel, "Check out my house", 0}
 }
 
 function runRandomFunction ()

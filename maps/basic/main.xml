@@ -1,0 +1,58 @@
+<!--
+This is the Create Basic level file. It sets the size of the level, what environment to use and all objects, such as vox-models, scripts and boundary, used in the level.
+Positions are given in meters relative to their parent objects position. In this level no objects are parented and hence positions are in reference to the bottom center of the game world.
+Sizes are given in voxels. One voxel is 0.1 meters on all sides.
+Here's two good exercies to get started with modding the levels:
+
+A. Try changing the environment of the level by replacing the value 'sunny' in the 'template' property on line 22. Use one of the other available templates; 'night', 'sunset', 'sunrise', 'foggy', or 'rain'.
+
+B. Copy the line referencing the 'basic.vox' file on line 37, and paste it right below the original. Change the values in the 'pos' property to get two houses at different positions in the level. Make sure the new line is pasted just below the original line so it is still between the opening <body> tag and the closing </body> tag.
+-->
+
+<!--
+The 'version' indicates what version of the editor was used to create the level. Leave it as is to make sure scripts are loaded as expected.
+The 'shadowVolume' property sets the area of the game where lighting, and subsequently shadows, are calculated. It is expressed in meters; width, height, length
+-->
+<scene version="3" shadowVolume="200 100 200">
+	<!-- 
+	This sets the environment used for the level.
+	The 'template' property references a predefined setup of environments. Available environment templates are: 'sunny', 'night', 'sunset', 'sunrise', 'foggy', and 'rain'
+	The 'skyboxrot' sets the rotation of the skybox around the y axis, affecting the direction of the sun light. Explicitly set properties like this overrides the properties in the template. 
+	-->
+	<environment template="sunny" skyboxrot="-45"/>
+	<body>
+		<!-- 
+		A voxbox is a basic box shape. By default it is indestructible.
+		The 'pos' property sets the position of the box's top-upper-left corner relative to the bottom center of the game world, in meters. 
+		The 'size' property sets the size of the box in voxels as; width, height, and length. 
+		-->
+		<voxbox pos="-100.0 -0.1 -100.0" size="2000 1 2000"/>
+	</body>
+	<body>
+		<!-- 
+		A vox is a voxel model loaded from a vox-file.
+		The 'pos' property sets it's position relative to the bottom center of the game world, in meters.
+		The 'file' property references the vox-file to be loaded. The 'LEVEL' keyword is a reference to the folder with the same name as the level file i.e., The keyword 'LEVEL' in the basic.xml level file (this file) references the folder named 'basic'.
+		-->
+		<vox pos="0.0 0.0 0.0" file="LEVEL/basic.vox"/> 
+	</body>
+	<!-- 
+	The boundary is the orange grid which the player can not pass through. It is defined by a number of vertices.
+	-->
+	<boundary>
+		<!-- 
+		These vertices defines the boundary of the game level.
+		The 'pos' property sets the position of the vertex relative to the bottom center of the game world, in meters. As the boundary has infinite height the positions are only given relative to width and length, without height.
+		-->
+		<vertex pos="-100.0 -100.0"/>
+		<vertex pos="100.0 -100.0"/>
+		<vertex pos="100.0 100.0"/>
+		<vertex pos="-100.0 100.0"/>
+	</boundary>
+	<!-- 
+	This loads and runs the referenced script when the level starts.
+	The 'file' property is the reference to which script should be loaded and run. Since this file reference is not preceded by 'LEVEL/' it is loaded from the 'data/script' folder in the installation folder.
+	-->
+	<script file="main.lua"/>
+	<script file="sandbox.lua"/>
+</scene>
