@@ -3,6 +3,7 @@ timeToChaos = (GetInt("savegame.mod.timeToChaos", 10) * 60) --configurable in op
 timepassed = 0
 latestChaos = "";
 activeEffects = {}
+local lastVehicle
 
 function init()
 	if timeToChaos == 0 then
@@ -10,7 +11,14 @@ function init()
 	end
 end
 
-function update()
+function tick()
+	--Get player vehicle
+	v = GetPlayerVehicle()
+	if(v ~= 0) then
+		lastVehicle = v
+	end
+
+	--Run active effects
 	timepassed = timepassed + 1
 	for i = 1, #activeEffects, 1 do
 		effect = activeEffects[i]
@@ -29,8 +37,8 @@ function update()
 		end
 	end
 
-
-    if timepassed > timeToChaos  then
+	--Select random effects
+    if timepassed >= timeToChaos  then
         timepassed = 0
 		runRandomFunction()
     end
@@ -147,6 +155,10 @@ function explosionAtSight()
 	Explosion(raycast(), 1)
 end
 
+function throttle()	
+	DriveVehicle(lastVehicle, 1, 0, false)
+end
+
 
 
 
@@ -166,7 +178,8 @@ effects =
 	{vehicleSpin, "You spin me right round", 0},
 	{laserVision, "Laser vision", 300},
 	{fireVision, "Fire vision", 300},
-	{explosionAtSight, "Look where you're looking", 0}
+	{explosionAtSight, "Look where you're looking", 0},
+	{throttle, "Runaway vehicle", 300}
 }
 
 function runRandomFunction ()
@@ -186,18 +199,22 @@ function runRandomFunction ()
 		if(effect[3] == 0) then
 			func()
 		else
-			--Need to do this to pass by value and not by reference
-			--Can probably be done better
-			qa = effect[1]
-			qb = effect[2]
-			qc = effect[3]
-			activeEffects[#activeEffects + 1] = {qa, qb, qc}
+			addActiveEffect(effect)
 		end
 		--Set text to effect text
 		latestChaos = effect[2]
     else
         latestChaos = "error"
     end
+end
+
+function addActiveEffect(effect)
+	--Need to do this to pass by value and not by reference
+	--Can probably be done better
+	qa = effect[1]
+	qb = effect[2]
+	qc = effect[3]
+	activeEffects[#activeEffects + 1] = {qa, qb, qc}
 end
 
 
