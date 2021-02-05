@@ -137,6 +137,26 @@ function vehicleSpin()
 	end
 end
 
+function laserVision()
+	hitPoint = raycast()
+	MakeHole(hitPoint, 0.2, 0.2, 0.2)
+	SpawnParticle("smoke", hitPoint, Vec(0, 1, 0), 1, 2)
+end
+
+function fireVision()
+	SpawnFire(raycast())
+end
+
+function raycast()
+	local t = GetCameraTransform()
+	local dir = TransformToParentVec(t, {0, 0, -1})
+	
+	local hit, dist, normal, shape = QueryRaycast(t.pos, dir, 1000)
+	if hit then
+		local hitPoint = VecAdd(t.pos, VecScale(dir, dist))
+		return hitPoint
+	end
+end
 
 
 
@@ -153,7 +173,9 @@ effects =
     {knock, "Who's there?", 0},
 	{vehicleBoost, "BOOST", 300},
 	{loadLevel, "Check out my house", 0},
-	{vehicleSpin, "You spin me right round", 0} 
+	{vehicleSpin, "You spin me right round", 0},
+	{laserVision, "Laser vision", 300},
+	{fireVision, "Fire vision", 300}
 }
 
 function runRandomFunction ()
