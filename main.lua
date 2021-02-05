@@ -48,10 +48,6 @@ function draw()
     UiText(latestChaos, true)
 end
 
-function round(x)
-    return x>=0 and math.floor(x+0.5) or math.ceil(x-0.5)
-end
-
 
 
 --EFFECTS
@@ -147,16 +143,6 @@ function fireVision()
 	SpawnFire(raycast())
 end
 
-function raycast()
-	local t = GetCameraTransform()
-	local dir = TransformToParentVec(t, {0, 0, -1})
-	
-	local hit, dist, normal, shape = QueryRaycast(t.pos, dir, 1000)
-	if hit then
-		local hitPoint = VecAdd(t.pos, VecScale(dir, dist))
-		return hitPoint
-	end
-end
 
 
 
@@ -207,4 +193,22 @@ function runRandomFunction ()
     else
         latestChaos = "error"
     end
+end
+
+
+
+--USEFUL FUNCTIONS
+function raycast()
+	local t = GetCameraTransform()
+	local dir = TransformToParentVec(t, {0, 0, -1})
+	
+	local hit, dist, normal, shape = QueryRaycast(t.pos, dir, 1000)
+	if hit then
+		local hitPoint = VecAdd(t.pos, VecScale(dir, dist))
+		return hitPoint
+	end
+end
+
+function round(x)
+    return x>=0 and math.floor(x+0.5) or math.ceil(x-0.5)
 end
