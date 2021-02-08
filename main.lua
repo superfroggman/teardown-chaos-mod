@@ -159,6 +159,11 @@ function throttle()
 	DriveVehicle(lastVehicle, 1, 0, false)
 end
 
+function teleport()
+	local lenght = 1
+	local t = Transform(VecAdd(GetPlayerTransform().pos, Vec(math.random(-lenght, lenght),math.random(-lenght, lenght),math.random(-lenght, lenght))), GetPlayerTransform().rot)
+end
+
 
 
 
@@ -178,8 +183,9 @@ effects =
 	{vehicleSpin, "You spin me right round", 0},
 	{laserVision, "Laser vision", 300},
 	{fireVision, "Fire vision", 300},
-	{explosionAtSight, "Look where you're looking", 0},
-	{throttle, "Runaway vehicle", 600}
+	{explosionAtSight, "Watch where you're looking", 0},
+	{throttle, "Runaway vehicle", 600},
+	{teleport, "Teleport a few meters", 0}
 }
 
 function runRandomFunction ()
