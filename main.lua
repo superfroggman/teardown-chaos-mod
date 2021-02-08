@@ -161,7 +161,9 @@ function throttle()
 	end
 end
 
-
+function fullHealth()
+	SetPlayerHealth(1)
+end
 
 --EFFECT LIST
 
@@ -181,6 +183,7 @@ effects =
 	{fireVision, "Fire vision", 300},
 	{explosionAtSight, "Watch where you're looking", 0},
 	{throttle, "Runaway vehicle", 600},
+	{fullHealth, "Invincibility", 600}
 }
 
 function runRandomFunction ()
