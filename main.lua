@@ -95,8 +95,8 @@ function knock()
 end
 
 --TAKEN DIRECTLY FROM DEV EXAMPLE
-power = 0.5
 function vehicleBoost()
+	local power = 0.5
 	--Only active when player is in vehicle
 	v = GetPlayerVehicle()
 	if v > 0 then
@@ -155,8 +155,10 @@ function explosionAtSight()
 	Explosion(raycast(), 1)
 end
 
-function throttle()	
-	DriveVehicle(lastVehicle, 1, 0, false)
+function throttle()
+	if(lastVehicle ~= 0) then
+		DriveVehicle(lastVehicle, 1, 0, false)
+	end
 end
 
 function teleport()
