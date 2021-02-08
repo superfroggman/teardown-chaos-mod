@@ -161,20 +161,6 @@ function throttle()
 	end
 end
 
-function teleport()
-	local lenght = 10
-
-	local vehicle = GetVehicleBody(GetPlayerVehicle())
-	if vehicle ~= 0 then
-		local t = Transform(VecAdd(GetBodyTransform(vehicle).pos, Vec(math.random(-lenght, lenght),0,math.random(-lenght, lenght))), GetBodyTransform(vehicle).rot)
-		SetBodyTransform(vehicle, t)
-	else
-		local t = Transform(VecAdd(GetPlayerTransform().pos, Vec(math.random(-lenght, lenght),0,math.random(-lenght, lenght))), GetPlayerTransform().rot)
-		SetPlayerTransform(t)
-	end
-end
-
-
 
 
 --EFFECT LIST
@@ -195,7 +181,6 @@ effects =
 	{fireVision, "Fire vision", 300},
 	{explosionAtSight, "Watch where you're looking", 0},
 	{throttle, "Runaway vehicle", 600},
-	{teleport, "Teleport a few meters", 0}
 }
 
 function runRandomFunction ()
