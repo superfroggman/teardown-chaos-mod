@@ -163,8 +163,15 @@ end
 
 function teleport()
 	local lenght = 10
-	local t = Transform(VecAdd(GetPlayerTransform().pos, Vec(math.random(-lenght, lenght),0,math.random(-lenght, lenght))), GetPlayerTransform().rot)
-	SetPlayerTransform(t)
+
+	local vehicle = GetVehicleBody(GetPlayerVehicle())
+	if vehicle ~= 0 then
+		local t = Transform(VecAdd(GetBodyTransform(vehicle).pos, Vec(math.random(-lenght, lenght),0,math.random(-lenght, lenght))), GetBodyTransform(vehicle).rot)
+		SetBodyTransform(vehicle, t)
+	else
+		local t = Transform(VecAdd(GetPlayerTransform().pos, Vec(math.random(-lenght, lenght),0,math.random(-lenght, lenght))), GetPlayerTransform().rot)
+		SetPlayerTransform(t)
+	end
 end
 
 
