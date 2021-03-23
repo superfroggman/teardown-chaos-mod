@@ -70,14 +70,16 @@ function draw()
 	UiPush()
 		UiTranslate(250, 150)
 		UiTranslate(-UiCenter(), 0)
+
+
 		for i = 1, #effects, 1 do
+			drawButton(effects[i][2], "savegame.mod.effect" .. i, true)
+
 			UiTranslate(buttonW,0)
-			if(i%perRow==0) then 
+			if(i%perRow==0) then
 				UiTranslate(0,50)
 				UiTranslate(-buttonW*(perRow), 0) 
 			end
-
-			drawButton(effects[i][2], "savegame.mod.effect" .. i, true)
 		end
 	UiPop()
 	
