@@ -106,6 +106,20 @@ function fullHealth()
 	SetPlayerHealth(1)
 end
 
+function driveAllVehicles()
+    vehicles = {}
+
+    local list = QueryAabbShapes(Vec(-1000, -1000, -1000), Vec(1000, 1000, 1000))
+	for i=1, #list do
+		if GetBodyVehicle(GetShapeBody(list[i])) ~= 0 then
+			vehicles[#vehicles+1] = GetBodyVehicle(GetShapeBody(list[i]))
+		end
+	end
+
+    for i = 1, #vehicles, 1 do
+        DriveVehicle(vehicles[i], 1, 0, false)
+    end
+end
 
 
 --EFFECT LIST
@@ -117,14 +131,15 @@ effects =
 	{launchUp, "Launch Up", 0, true},
 	{hole, "Diggy Diggy Hole", 0, true},
 	{removeVehicle, "Bye Bye Vehicle", 0, false},
-    {fireTrail, "Fire go brrrrrr", 300, true},
+    {fireTrail, "Fire go brrrrrr", 1, true},
     {knock, "Who's there?", 0, true},
-	{vehicleBoost, "BOOST", 1200, true},
+	{vehicleBoost, "BOOST", 1, true},
 	{vehicleSpin, "You spin me right round", 0, true},
-	{laserVision, "Laser vision", 300, true},
-	{fireVision, "Fire vision", 300, true},
+	{laserVision, "Laser vision", 1, true},
+	{fireVision, "Fire vision", 1, true},
 	{explosionAtSight, "Watch where you're looking", 0, true},
-	{throttle, "Runaway vehicle", 600, true},
-	{fullHealth, "Invincibility", 600, true}
+	{throttle, "Runaway vehicle", 1, true},
+	{fullHealth, "Invincibility", 1, true},
+    {driveAllVehicles, "All vehicles drive (laggy)", 1, false}
 }
 

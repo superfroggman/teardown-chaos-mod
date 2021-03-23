@@ -1,4 +1,5 @@
 #include "effects.lua"
+#include "utilities.lua"
 
 timeToChaos = GetInt("savegame.mod.timeToChaos", 10)
 
@@ -20,13 +21,7 @@ function drawButton(title, key, value)
 	UiPop();
 end
 
-function resetEffects()
-	for i = 1, #effects, 1 do
-		SetBool("savegame.mod.effect" .. i, effects[i][4])
-	end
 
-	SetBool("savegame.mod.effectsSet", true)
-end
 
 
 function init()

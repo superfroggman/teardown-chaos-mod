@@ -1,5 +1,5 @@
 #include "effects.lua"
-#include "options.lua"
+#include "utilities.lua"
 
 --NON-CONFIGURABLE
 timeToChaos = (GetInt("savegame.mod.timeToChaos", 10) * 60) --configurable in options
@@ -99,26 +99,8 @@ end
 function addActiveEffect(effect)
 	--Need to do this to pass by value and not by reference
 	--Can probably be done better
-	qa = effect[1]
-	qb = effect[2]
-	qc = effect[3]
-	activeEffects[#activeEffects + 1] = {qa, qb, qc}
-end
-
-
-
---USEFUL FUNCTIONS
-function raycast()
-	local t = GetCameraTransform()
-	local dir = TransformToParentVec(t, {0, 0, -1})
-	
-	local hit, dist, normal, shape = QueryRaycast(t.pos, dir, 1000)
-	if hit then
-		local hitPoint = VecAdd(t.pos, VecScale(dir, dist))
-		return hitPoint
-	end
-end
-
-function round(x)
-    return x>=0 and math.floor(x+0.5) or math.ceil(x-0.5)
+	func = effect[1]
+	name = effect[2]
+	time = effect[3]*timeToChaos
+	activeEffects[#activeEffects + 1] = {func, name, time}
 end
