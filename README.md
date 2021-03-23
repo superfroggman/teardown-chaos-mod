@@ -2,7 +2,7 @@
 
 *** ***Currently in development*** ***
 
-Teardown Chaos Mod is a recreation of <a href ="https://github.com/gta-chaos-mod/ChaosModV">pongo1231's Chaos Mod</a> for Grand Theft Auto V.
+Teardown Chaos Mod is inspired by <a href ="https://github.com/gta-chaos-mod/ChaosModV">pongo1231's Chaos Mod</a> for Grand Theft Auto V.
 
 # How to install
 
