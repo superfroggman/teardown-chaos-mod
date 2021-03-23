@@ -2,7 +2,7 @@
 
 timeToChaos = GetInt("savegame.mod.timeToChaos", 10)
 
-
+--From https://steamcommunity.com/sharedfiles/filedetails/?id=2419552682
 function drawButton(title, key, value)
 	UiPush();
 		if UiTextButton(title, 320, 40) then
@@ -30,6 +30,7 @@ end
 
 
 function init()
+	--Set default enabled effects if not already changed
 	if not GetBool("savegame.mod.effectsSet") then
 		resetEffects()
 	end
@@ -42,16 +43,18 @@ function draw()
 	--Title
 	UiFont("bold.ttf", 48)
 	UiText("Chaos Mod Options")
-
-    UiTranslate(0, 100)
 		
-	--Draw buttons	
+	--Needed to render buttons
 	UiFont("regular.ttf", 26)
 	UiButtonImageBox("ui/common/box-outline-6.png", 6, 6)
-	
+
+	--Text
+	UiTranslate(0, 100)
 	UiFont("bold.ttf", 36)
 	UiText("Time between chaos: ")
 	UiFont("regular.ttf", 26)
+
+	--Slider
 	UiPush()
 		UiTranslate(0, 50)
 		UiColor(1,1,0.7)
@@ -65,13 +68,12 @@ function draw()
 		UiText(math.floor(timeToChaos))	
 	UiPop()
 	
+	--Effect buttons
 	buttonW = 350
 	perRow = 5
 	UiPush()
 		UiTranslate(250, 150)
 		UiTranslate(-UiCenter(), 0)
-
-
 		for i = 1, #effects, 1 do
 			drawButton(effects[i][2], "savegame.mod.effect" .. i, true)
 
@@ -83,7 +85,7 @@ function draw()
 		end
 	UiPop()
 	
-
+	--Close button
 	UiTranslate(0, 550)
 	if UiTextButton("Close", 200, 40) then
 		Menu()
